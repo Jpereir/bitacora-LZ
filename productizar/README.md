@@ -292,7 +292,7 @@ utilizamos un repo distinto, el cual es [NU0044001_ProductizarLaAnalitica](https
     - se necesitan los datos en especificos:
         - para el test plan y para el release:
     - modificar las variables (agregar replicas y max-replicas)
-    - modificar las tareas de smoke test y performance test cer
+    - modificar las tareas de smoke test y performance test cer y smoke test de prd
     - hacer testplans? pasarle al certificador los rnf de cada jmeter
     - empezar a hacer pruebas para que el estado de pruebas pase.
 
@@ -321,10 +321,36 @@ utilizamos un repo distinto, el cual es [NU0044001_ProductizarLaAnalitica](https
 
     - Se debe crear una HA de monitoreo y enviar un correo. Para ello nos podemos basar en el correo con asunto `Monitoreo - API EcoMovilidad - HA3629938 - Cotización Monitoreo API Productizar ( EcoMovilidad)` y la HA `3629938`
     - Modificar excel y word. Podria crear un script para llenar ese excel feo.
+    - Hablar con Cristian David Marulanda Cano
+    - Enviar correo y HA.
 
 3. **Promover API**
+    - Crear una tarea en la HU de despliegue de API a prd pues con esta HU es que saldremos a PRD y trabajaremos el release, DoD y demas.
+    - El tablero de Hygieae debe estar por encima de 85%.
     - Enviar a certificacion. El certificador crea el DoD junto con los Testplan que ya se tenian para las especializadas. Entregarle al certificador la HU, el release y testplan.
-    - Trabajar el release.
+    - **Trabajar el release:**
+        - **Descripcion** Se debe modificar la descripcion del release usando la siguiente plantilla.
+
+
+              TITULO: <HU_fullname>
+              NECESIDAD: Implementación HU<HU_id> para el despliegue del API <API-name> en ambientes productivos.
+              SOLUCION: Desplegar API <API-name> en ambientes productivos
+              BENEFICIO: Generar acceso al API <API-name> para que puedan consumir equipos del banco.
+              IMPACTO: Verificado en las pruebas de performance asociadas en el presente release.               
+        - **Create OC:** 
+            
+            - E2E: En este punto el release ya debe estar excepcionado de las pruebas E2E (punto 1 de la seccion Salida a PRD), si no, el create OC fallara. 
+            - variables: Cancelar el stage y darle a editar variables y luego editar release. Nos dirigimos al editar tasks del create OC y entramos a la tarea de `Change Order USD` y modificamos algunas variables de la sigueinte manera
+
+                variable|value|ejemplo
+                -|-|-
+                Team|<celula>|DAIA15 - DRACARYS
+                Dependencia|<nombre-EVC>|Entorno Otros EVC - EVC Datos Analitica AI Blockchain - Cloudera Data Platform
+                ....
+            - Testplan: cerrar los testplan
+            - aprobacion: hablar con luis para aprobar el starge.
+
+
     - Probar contexion.
 
 4. **Promover coordinador**
@@ -350,7 +376,7 @@ utilizamos un repo distinto, el cual es [NU0044001_ProductizarLaAnalitica](https
           $ INSERT INTO resultados.Inventario_LZ (package,table_name,semilla,proceso,origen_fuente,data_folder,periodicidad,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito) VALUES ('<paquete>','<table-name-resultados>','<zona-resultados>','<proceso>','Coordinador','<ruta-opt-prd>','<periodicidad>','<descripcion>','<hu-user>','<dia-ejecucion>','<hora-ejecucion>','<prerrequisto>'); 
 
     - Con el usuario verificar los prerrequistos del coordinador ya que se ejecutara en malla.
-    - Mandar certificar. entregarle el release al certificador.
+    - Mandar certificar. entregarle el release, al certificador.
     - 
 
     

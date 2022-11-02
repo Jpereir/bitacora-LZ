@@ -17,6 +17,8 @@ Documentacion de los distintos procesos de se realizan en la LZ (Landing zone), 
 - **Reingestiones:** Proceso donde se hace la ingesta de una porsion de una tabla. Por distintas razones el proceso de ingesta en produccion puede vayar para uno o varios periodos, horas, dias, etc, cuando esto sucede, los usuarios solicitan a la LZ borrar y volver a cargar los periodos con errores o vacios que se tengan en las bases de datos de la LZ. En resumidas cuentas consiste en tapar los huecos de datos existentes en las bases de datos.
 
 - **Soporte estructural:** Consiste en desarrollos para el mejoramiento de los procesos de la Lz.
+- **Rutinas**
+- **Productizar**
 
 ### Glosario:
 - **Subdominio:** Archivo de configuracion para realziar la conexion a una base de datos.
@@ -30,8 +32,10 @@ Documentacion de los distintos procesos de se realizan en la LZ (Landing zone), 
 
 ### Algunos comandos utiles
 
-Si sale algun error en ambientes pre-productivos con el mensaje Client cannot authenticate via:[TOKEN, KERBEROS]
-  $ kinit svchad02@AMBIENTESBC.LAB -k -t /opt/cloudera/security/keytabs/svchad02.keytab
+- Si sale algun error en ambientes pre-productivos con el mensaje Client cannot authenticate via:[TOKEN, KERBEROS]
 
-Matar un proceso en hue dev
-oozie job -oozie https://$STR_CNX_OOZIE -kill <ID_HUE>
+      $ kinit svchad02@AMBIENTESBC.LAB -k -t /opt/cloudera/security/keytabs/svchad02.keytab
+
+- Matar un proceso en `HUE` dev
+      
+      oozie job -oozie https://$STR_CNX_OOZIE -kill <ID_HUE>
