@@ -14,7 +14,9 @@
     - documentacion de la solucion: si.
     - poner link de la wiki http://wikiti/wikiti/index.php/CapacidadesAnaliticas-DT en Ruta Documantacion
     - luego en calidad de la solucion damos a automatico DevOps
-    - en nombre del release: AW1003001_CDH_PyEnvs => asegurarnos que no tenemos espacios
+    - en nombre del release: 
+        - AW1003001_CDH_PyEnvs
+        - NU0044001_ProductizarLaAnalitica
     - poner luego el artefacto sin el punto final
     - se ejecutaran pruebas especializadas: no
     - ¿Esta solución contiene implementaciones solicitadas por el analista de seguridad?: NO

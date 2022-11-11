@@ -350,6 +350,8 @@ utilizamos un repo distinto, el cual es [NU0044001_ProductizarLaAnalitica](https
             - Testplan: cerrar los testplan
             - aprobacion: hablar con luis para aprobar el starge.
 
+        - **Smoke Test**: debe estar con todas las configuraciones igual que el smoktest de dev, ambos stages deben tambien contar con las mismas variables.
+
 
     - Probar contexion.
 

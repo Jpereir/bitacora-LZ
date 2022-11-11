@@ -524,7 +524,8 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
               <Pantallazo HUE PRD>
               
 
-    - **Cerrar la HU:** La hu debe ser cerrada luego de que se haya inscrito en malla y comprobado que fue ejecutada en control M. Modificar el estado de la HU a `Closed` y guardar cambios. En caso de que sea el ultimo dia del sprint la HU se cerraria luego de pasar por deployPDN pero se debe seguir trabajando.
+    - **Cerrar la HU:** La hu debe ser cerrada luego de que se haya inscrito en malla y comprobado que fue ejecutada en control M. Modificar el estado de la HU a `Closed` y guardar cambios. En caso de que sea el ultimo dia del sprint la HU se cerraria luego de pasar por deployPDN pero se debe seguir trabajando. 
+    - Verificar el archivo Documetnacion por tipoligia de Hu - cierra en la carpeta de gestion de historias de usuario donde esta la info de que cosas se deben agregar en le cierre de la HU
 
 ## Notas del autor: 
 - **TODO**: cambiar lastbvalue

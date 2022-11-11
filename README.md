@@ -12,7 +12,7 @@ Documentacion de los distintos procesos de se realizan en la LZ (Landing zone), 
 
     Antes de realziar algun commit configurar el email en git para evitar problemas al realizar algun pull request.
 
-      $ git config --global user.email "<bancolombia-user-email>"
+      $ git config user.email "<bancolombia-user-email>"
 
 - **Reingestiones:** Proceso donde se hace la ingesta de una porsion de una tabla. Por distintas razones el proceso de ingesta en produccion puede vayar para uno o varios periodos, horas, dias, etc, cuando esto sucede, los usuarios solicitan a la LZ borrar y volver a cargar los periodos con errores o vacios que se tengan en las bases de datos de la LZ. En resumidas cuentas consiste en tapar los huecos de datos existentes en las bases de datos.
 

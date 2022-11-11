@@ -224,6 +224,7 @@ Consiste en el proceso de crear o modificar alguna libreria o codigo (rutina) de
 
 11. **Cerrar HU**
     ### como cierro la HU?
+    - Verificar el archivo Documetnacion por tipoligia de Hu - cierra en la carpeta de gestion de historias de usuario donde esta la info de que cosas se deben agregar en le cierre de la HU
 
 - 
 # TODO

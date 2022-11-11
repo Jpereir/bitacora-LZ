@@ -91,7 +91,7 @@
 - **Adjuntar documentacion:** Debemos adjuntar a la docuemtnacion:
     - El correo que no hacemos pruebas.
     - Se adjunta la matriz de riesgo (adjuntar el execel) luego de averla diligenciado. cambiando las fechas (las dos primeras dos dias antes de la salida a PRD y la ultima el dia de la salida), nombre de usuario, dejar en 1 el riesgo.
-    - Los logs de la rutina. en un archivo zip de evidencias con nombre Evidencias_<EVC>_HU_<HU-id>.zip
+    - Los logs de la rutina. en un archivo zip de evidencias con nombre `Evidencias_<EVC>_HU_<HU-id>.zip`
     - otros dos archivos
 
 - agregar comentatio
