@@ -1,6 +1,5 @@
 # DOD.
 - **state:** Building
-- **last_update:** 2022-07-07
 
 ## Proceso
 - **Crear DoD**
@@ -15,6 +14,7 @@
     - poner link de la wiki http://wikiti/wikiti/index.php/CapacidadesAnaliticas-DT en Ruta Documantacion
     - luego en calidad de la solucion damos a automatico DevOps
     - en nombre del release: 
+        - AW1003001_BigDataCompany
         - AW1003001_CDH_PyEnvs
         - NU0044001_ProductizarLaAnalitica
     - poner luego el artefacto sin el punto final

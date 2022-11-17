@@ -9,6 +9,10 @@ En los refinamientos de `Historias de Usuario` de rutinas el objetivo es determi
 
 - **Leer la historia de usuario:** Se debe leer la HU y los distintos comentarios que haya para obtener el contexto de la misma. Debemos verificar qué informacion nos da el usuario respecto al repositorio y pull-request de la rutina que se trabajar, tambien debemos asegurarnos que la HU cuente con un padre.
 - **Verificar tipo de HU:**
+
+# CALENDARIZAICON 2.0
+- un log cerca a la hora de calendarizar
+
 si es una rutina tradicional o virtual. las tradicionales entregan codigo compleoto, las virtuqales entrgan pr. 
 si es revision
 si es modificacion

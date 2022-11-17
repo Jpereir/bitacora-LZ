@@ -30,6 +30,7 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
     
     - Si la ingestion de intraday debe haber informacion del inicio y fin del proceso cada dia.
     - Tener en cuenta que la LZ NO HACE PERSONALIZACIONES a nivel del paquete, por eso cualquier modificacion del where condition en el paquete no esta permitida. Hay cambios en el paquete que si estan permitidos como los cambios de mappers.
+    - **Existencia:** revisar que la tabla ya no se este ingestando. Buscar nombre, esquema, aplicativo, fuente, etc. La idea es que dos flujos no queden con el mismo nombre, ya que generaria problemas.
 
 2. **Preparar datos:** Se deben realziar algunas modificaciones en la plantilla descargada. Tambien es necesario tomar nota de alguna informacion de la plantilla que sera util para el proceso de ingestion. 
 

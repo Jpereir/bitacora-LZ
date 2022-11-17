@@ -165,7 +165,7 @@ Consiste en el proceso de crear o modificar alguna libreria o codigo (rutina) de
 
             Verificamos cual es el ultimo numero consecutivo y tomamos el siguiente para nuestro proceso. Debemos tener muy ecuenta el nombre del paquete sqp y el nombre del proceso. son diferentes.
             
-              paquete sqp => SQOOPDI1937 ->  SQP + periodicidad + ultimo consecutivo + 1
+              paquete sqp => SQOOPDI1937 ->  SQOOP + periodicidad + ultimo consecutivo + 1
               proceso sqp => SQPDI1937RTNCSD -> SQP + periodicidad + ultimo consecutivo + 1 + RTN + Aplicativo
 
             Podemos ver rutinas de ejemplo con la siguiente query.
@@ -174,7 +174,13 @@ Consiste en el proceso de crear o modificar alguna libreria o codigo (rutina) de
         
         - **Separar paquete:** Una vez tengamos el nombre del paquete y proceso definidos vamos aregistrar la rutina en el autonventory. la idea es ejecutar la sigueinte consuslta reemplazando los campos requerdos.
 
-              $ INSERT INTO resultados.Inventario_LZ (package,table_name,semilla,proceso,origen_fuente,data_folder,periodicidad,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito) VALUES ('<paquete>','N/A','<repo>','<proceso>','Rutina','N/A','<periodicidad>','<descripcion>','<hu-user>','<dia-ejecucion>','<hora-ejecucion>','N/A');
+              $ INSERT INTO resultados.Inventario_LZ (package,table_name,semilla,proceso,origen_fuente,data_folder,periodicidad,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito,short_name,workflow) VALUES ('<paquete>','<nombre-rutina>','<grupo-USD>','<proceso>','Rutina','<directorio-rutina>','<periodicidad>','<descripcion>','<usuario-hu>','<dia-ejecucion>','<hora-ejecucion>','<prerrequisto>',<aplicativo>,<comando-ejecucion>);
+
+            Ejemplo parametrios:
+            |parametro|ejemplo|
+            |-|-|
+            |dir-rutina|/avirtual/resultados_canales/VEDDQflowServicios|
+            |comando-ejecucion|python3 /home/svchad02/scripts/pyEnvs/runPyEnv.py --resultDir resultados_riesgos --pyEnvPkg Orquestador_BNPL --pySitePck Orquestador_BNPL|
 
             podemos verificar el registro volviendo aconsultar los ultimos 10 procesos.
                     
