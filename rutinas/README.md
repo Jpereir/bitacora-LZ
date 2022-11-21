@@ -174,13 +174,24 @@ Consiste en el proceso de crear o modificar alguna libreria o codigo (rutina) de
         
         - **Separar paquete:** Una vez tengamos el nombre del paquete y proceso definidos vamos aregistrar la rutina en el autonventory. la idea es ejecutar la sigueinte consuslta reemplazando los campos requerdos.
 
-              $ INSERT INTO resultados.Inventario_LZ (package,table_name,semilla,proceso,origen_fuente,data_folder,periodicidad,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito,short_name,workflow) VALUES ('<paquete>','<nombre-rutina>','<grupo-USD>','<proceso>','Rutina','<directorio-rutina>','<periodicidad>','<descripcion>','<usuario-hu>','<dia-ejecucion>','<hora-ejecucion>','<prerrequisto>',<aplicativo>,<comando-ejecucion>);
+              $ INSERT INTO resultados.Inventario_LZ (package,table_name,semilla,proceso,origen_fuente,data_folder,periodicidad,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito,short_name,workflow) VALUES ('<paquete>','<nombre-rutina>','<grupo-USD>','<proceso>','Rutina','<directorio-rutina>','<periodicidad>','<descripcion>','<usuario-hu>','<dia-ejecucion>','<hora-ejecucion>','<prerrequisto>','<aplicativo>','<comando-ejecucion>');
 
             Ejemplo parametrios:
             |parametro|ejemplo|
             |-|-|
-            |dir-rutina|/avirtual/resultados_canales/VEDDQflowServicios|
-            |comando-ejecucion|python3 /home/svchad02/scripts/pyEnvs/runPyEnv.py --resultDir resultados_riesgos --pyEnvPkg Orquestador_BNPL --pySitePck Orquestador_BNPL|
+            |`<paquete>`|SQPSE2278|
+            |`<nombre-rutina>`|Rutina de Contactabilidad|
+            |`<grupo-USD>`|Jurídico Analítico Personas Enriquecimiento y Monitoreo.|
+            |`<proceso>`|SQPSE2278RTNCPN|
+            |`<directorio-rutina>`|/avirtual/resultados_vppc_dir_estrat_clte_pers/contactabilidad_pn/|
+            |`<periodicidad>`|Semanal|
+            |`<descripcion>`|Calendarizar el proceso de Contactabilidad para su correcto cargue semanal, en la LZ en la zona de resultados resultados_vppc_dir_estrat_clte_pers.|
+            |`<usuario-hu>`|Santiago Restrepo Yepes|
+            |`<dia-ejecucion>`|Martes|
+            |`<hora-ejecucion>`|1:00pm|
+            |`<prerrequisto>`|N/A|
+            |`<aplicativo>`|CPN|
+            |`<comando-ejecucion>`|python3 /home/svchad02/scripts/pyEnvs/runPyEnv.py --resultDir resultados_vppc_dir_estrat_clte_pers --pyEnvPkg contactabilidad_pn --pySitePck contactabilidad_pn|
 
             podemos verificar el registro volviendo aconsultar los ultimos 10 procesos.
                     
