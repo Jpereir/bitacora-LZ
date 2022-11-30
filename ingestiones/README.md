@@ -119,6 +119,8 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
 
             Luego de ejecutar el script, se crea la base de datos temporal y se agregan datos random a la tabla. Este script debe de ejecutarse una vez por dia. Ya que al final del dia se eliminan todas las tablas temporales.
 
+            `<path_txt_with_metadata>` ejemplo: oracle_INQUIRT_AUDIT_TABLE. Es obligatorio que el nombre de la tabla este completamente ne minuscula
+
         El proceso de extraer la metadata y ejecutar el scipt `createData.sh` debe realizarse para cada una de las tablas requeridas. Cuando el desarrollo se extienda mas de un dia, solo la ejecucion del script `createData.sh` debe de repterse.
 
     3. **Ajustar configs y passwords:** Las tablas creadas hay que ajustarlas con la configuracion y passwords que tienen en produccion. En caso de que el backup ya exista, nos saltamos este paso y nos dirigimos a **4. Modificar Eval**.
@@ -200,7 +202,19 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
           $ mv SQOOP<PeriodicidadCarga><paquete#>-getContext.py /home/<username>/AW1003001_BigDataCompany/py_workflows
           $ chmod 750 SQOOP<PeriodicidadCarga><paquete#>-getContext.py
 
-    - **Borrar datos:**
+    - **Borrar datos:** Se recomienda eliminar los datos en el directorio *`/dara/raw/...`*. y *`/etl/...`*. Esta ruta se puede verificar en el get-context.
+
+          $ hdfs dfs -rm -R <raw_data_location>
+          $ hdfs dfs -rm -R /etl/<subdominio>/<table_name_dst>
+
+        Tambien seria buena idea borrar la tabla que se creo de manera temporal 
+
+          $ impala-shell -i $STR_CNX_IMPALA -k -q "TRUNCATE TABLE <bd_hive>.<tablenameLz>;" --ssl
+          $ impala-shell -i $STR_CNX_IMPALA -k -q "DROP TABLE <bd_hive>.<tablenameLz>;" --ssl
+
+          # Exmample
+           $ impala-shell -i $STR_CNX_IMPALA -k -q "DROP TABLE S_Bam_Productos.teBanking_DBO_DETALLELOTECHEQ;" --ssl
+
 
     - **Ejecutar paquete:** El paquete, get-context o script debe ejecutarse para realizar un primer proceso de ingesta. Luego se realizaran pruebas para comprobar que la ingesta se haya realizado correctamente.
 
@@ -217,18 +231,7 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
         `<hue_aplicaction_id>` se peude tomar desde HUE yendo a la tarea que fallo. Revisando el output podria realziarse un diagnostico del error que causop que la ingestion no se llevara acabo. Para ver los logs de un flujo que se ejecuto en PRD debe de usarse el asistente Web.
      
 
-    **Nota:** Si el desarrollo se extiende mas de un dia se recomienda eliminar los datos en el directorio *`/dara/raw/...`*. Esta ruta se puede verificar en el get-context.
 
-       $ hdfs dfs -rm -R <raw_data_location>
-       $ hdfs dfs -rm -R /etl/<subdominio>/<table_name_dst>
-
-    Tambien seria buena idea borrar la tabla que se creo de manera temporal 
-
-       $ impala-shell -i $STR_CNX_IMPALA -k -q "TRUNCATE TABLE <bd_hive>.<tablenameLz>;" --ssl
-       $ impala-shell -i $STR_CNX_IMPALA -k -q "DROP TABLE <bd_hive>.<tablenameLz>;" --ssl
-
-       # Exmample
-       $ impala-shell -i $STR_CNX_IMPALA -k -q "DROP TABLE S_Bam_Productos.teBanking_DBO_DETALLELOTECHEQ;" --ssl
 
 7. **Automatizacion de certificacion:** Consiste en ejecutar pruebas con el objetivo de verificar que la ingestion se haya llevado de manera correcta.
     - **Crear lista de flujos:** Se debe crear un archivo txt que contenga lo siguiente.
@@ -427,20 +430,20 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
 
             **Nota:** Tener muy ecuenta la diferencia entre el nombre del paquete y el nombre del proceso. Dado que son cosas distintas hay que diferenciarlas muy bien.
 
-        - **WikiIT:** Con el proceso registrado en la matriz de escalamiento se procede a crear la [wikiIT](http://wikiti/wikiti/index.php/). La WikiIT es aquel lugar donde se puede conocer informacion de cada una de las ingestiones en produccion, al ser nuestra ingestion nueva, debemos agregar toda la informacion necesaria acerca de la misma. Para ello, nos basaremos en un articulo de wiki de otra ingestion.
-            - Accedemos a la [wikiIT](http://wikiti/wikiti/index.php/) e iniciamos sesion.
-            - Hacemos una busqueda del proceso **SQPDI1692DIGIWAVE**.
-            - damos click en *editar codigo*
-            - Copiamos todo el codigo del text area que aparecio y lo pegamos en algun archivo de texto temporal.
-            - Volvemos al Home de la wikiIT y realizamos una busqueda del proceso que queremos registrar. Saldra que el proceso no existe y que si queremos crear la pagina, damos click.
-            - Una nueva pagina se abrira, pegamos el codigo que pegamos en el archivo temporal y damos click en crear pagina.
-            - Procedemos editar la pagina que acabamos de crear 
-                - En **DESCRIPCIÓN GENERAL DEL PROCESO** Modificamos los items 1, 2, 7 y 15.
-                - En **ENTRADAS Y SALIDAS DEL PROCESO** en 1 y 3 ponemos el valor de `<nombre_app>`, en dos dejamos Baja si no se especifica lo contrario en la HU o plantilla. 
-                - En **INFORMACIÓN TÉCNICA DEL PROCESO - ANEXOS** borramos el enlace que haya en el item 1. 
-                - En **MANEJO DE INCIDENTES** en el item 1 remplazamos el primer enlace por el enlace del proceso en la `matriz de escalamiento`. 
-                - En **GESTIÓN DEL CONOCIMIENTO – DOCUMENTACIÓN ERRORES OPERACIÓN (SI APLICA)** modificamos los items 4, 5, 6 y 7 con los datos correspondientes.
-            - Finalmente guardamos los cambios y el proceso de la WikiIT queda completo.
+        - **Wiki:** Llenar wiki en azuer ~~**WikiIT:** Con el proceso registrado en la matriz de escalamiento se procede a crear la [wikiIT](http://wikiti/wikiti/index.php/). La WikiIT es aquel lugar donde se puede conocer informacion de cada una de las ingestiones en produccion, al ser nuestra ingestion nueva, debemos agregar toda la informacion necesaria acerca de la misma. Para ello, nos basaremos en un articulo de wiki de otra ingestion.~~
+            - ~~Accedemos a la [wikiIT](http://wikiti/wikiti/index.php/) e iniciamos sesion.~~
+            -~~ Hacemos una busqueda del proceso **SQPDI1692DIGIWAVE**.~~
+            - ~~damos click en *editar codigo*~~
+            -~~ Copiamos todo el codigo del text area que aparecio y lo pegamos en algun archivo de texto temporal.~~
+            - ~~Volvemos al Home de la wikiIT y realizamos una busqueda del proceso que queremos registrar. Saldra que el proceso no existe y que si queremos crear la pagina, damos click.~~
+            - ~~Una nueva pagina se abrira, pegamos el codigo que pegamos en el archivo temporal y damos click en crear pagina.~~
+            - ~~Procedemos editar la pagina que acabamos de crear ~~
+                - ~~En **DESCRIPCIÓN GENERAL DEL PROCESO** Modificamos los items 1, 2, 7 y 15.~~
+                - ~~En **ENTRADAS Y SALIDAS DEL PROCESO** en 1 y 3 ponemos el valor de `<nombre_app>`, en dos dejamos Baja si no se especifica lo contrario en la HU o plantilla. ~~
+                -~~ En **INFORMACIÓN TÉCNICA DEL PROCESO - ANEXOS** borramos el enlace que haya en el item 1. ~~
+                -~~ En **MANEJO DE INCIDENTES** en el item 1 remplazamos el primer enlace por el enlace del proceso en la `matriz de escalamiento`. ~~
+                - ~~En **GESTIÓN DEL CONOCIMIENTO – DOCUMENTACIÓN ERRORES OPERACIÓN (SI APLICA)** modificamos los items 4, 5, 6 y 7 con los datos correspondientes.~~
+            - ~~Finalmente guardamos los cambios y el proceso de la WikiIT queda completo.~~
         - **DoD:** En caso de que la `HU` haya pasado por certificacion, este paso estara a cargo de la persona certificadora, cuando certificacion retorne la HU en el estado `Pre-valdiacion`, todo lo referente al `DoD` estara completado.
         - **Test plan** En caso de que la `HU` haya pasado por certificacion, este paso estara a cargo de la persona certificadora, cuando certificacion retorne la HU en el estado `Pre-valdiacion`, todo lo referente al `Test plan` estara completado.
         - **Verificacar datos:** El estado de `pre-validacion` es un estado donde la `HU` esta cerca de pasar a produccion, por ende, hay que hacer una ultima verificacion de los datos de la `HU`, `Release`, `DoD`, `Test plan` y la documentacion:

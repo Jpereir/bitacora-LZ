@@ -62,6 +62,7 @@ Consiste en el proceso de crear o modificar alguna libreria o codigo (rutina) de
 
       - Una vez aprobado el pr fijarnos que aparecemos como aprobadores en el Pr.
     - **Contactar usuario:** Indicarle al usuario que continue con el *tag de version* y el *pipeline de despliegue en Artifactory*. Compartir `HU`. Si el usuario no conoce este procedimiento, compartir la siguiente [documentacion](https://grupobancolombia.visualstudio.com/Vicepresidencia%20de%20Innovaci%C3%B3n%20y%20Transformaci%C3%B3n%20Digital/_wiki/wikis/Vicepresidencia-de-Innovaci%C3%B3n-y-Transformaci%C3%B3n-Digital.wiki/9850/Calendarizaci%C3%B3n-de-paquetes-usando-Artifactory). Cuando el usuario haya comentado que se hizo el despligue podemos comprobar busnco en [artifactoty](https://artifactory.apps.bancolombia.com/ui/packages) usando el nombre del paqute.
+    - **Validar artefacto:** Una vez el usuario haya terminado las respectivas tareas luego de Approvar el `pull-request`, debemos verificar que el despliegue quedo realziado de manera correcta. Debemos revisar que haya un archivo de version y tambien que el despliegue se haya realizado en la rama trunk. El despliegue debe tener un identificador que sera nuestro artefacto, el cual lleva un formato de <curent-day>.<consecutiv> ejempllo: `20221124.2`.
     - **Nuevo release:** Una vez el usuario haya terminado las respectivas tareas luego de Approvar el `pull-request`, nos dirigimos a la seccion de `Pipelines` del portal de [VSTS](https://grupobancolombia.visualstudio.com/Vicepresidencia%20Servicios%20de%20Tecnolog%C3%ADa/_release?_a=releases&view=mine&definitionId=5944) y luego a `Releases`. Alli seleccionamos el repositorio *`AW1003001_CDH_PyEnvs`* y creamos un nuevo `release`. En el formulario de creacion del release poner el `<artifact>` que consultamos anteriormente. Finalmente dar click al boton crear del formulario.
     - **Modificar variables:** Una vez creado el release, ingresamos al mismo y nos dirigimos a la seccion de variables en la esquina superior izquierda, debajo del titulo del release. Alli damos click en editar y modificamos las sigueintes variables:
 
@@ -138,6 +139,9 @@ Consiste en el proceso de crear o modificar alguna libreria o codigo (rutina) de
     - **Ejecutar rutina:** El siguiente paso consiste en ejecutar la rutina y verificar que no haya errores en python o en la ejecucion del codigo. Para ello vamos a usar un script el cual se encarga de realizar dicha ejecucion.
 
           $ python3 /home/<user_name>/AW1003001_BigDataCompany/scripts/pyEnvs/runPyEnv.py --resultDir <results_zone> --pyEnvPkg <package_name> --pySitePck <site-package-name>
+
+        La rutina puede vallar y cada error debes informarle al usuario para que haga los respectivos cambios. El equipo no es dueño de la libreria orquestador ni de ninguna de las usadas en la rutina, asi que no es nuestro deber ir a profundidad de los errores que se generen para darle explicaciones al usuario, ellos tiene documentacion de cada una de las librerias que usan.
+        
        
         La rutina puede fallar por que en dev no tenemos acceso a todas las tablas, es un error esperado, si salen otros errores hay que reportarlos como hallazgos. Pueden salir errores de sintaxis de python u otros errores, cada error es un hallazgos. Algunos errores se pueden dar dado que los ambientes virtuaels se crean con python3.5, los usuarios pueden entregar rutinas con versiones superiores.
 
@@ -212,23 +216,35 @@ Consiste en el proceso de crear o modificar alguna libreria o codigo (rutina) de
 8. **Release: Create OC** hablamos encargado de la OC. para indicarle que ya tenemos una rutina hia. le pasamos el release. el certificador cierra el testplan.  Una vez este aprobado debemos veritficar el DoD, el DoD debe tener la Oc asignado de manera correcta y entrar a uno de los estados del release y ver que si se relaciono con el DoD correcto. Hasta la fecha se debe hablar con Luis
 9. **Release: DeployPDN** el certificador manda un correo y en infra ejecutan el despliegue en prd.
 10. **Release:user Valdiation.**
-    - **correo infra. inventario de resultados**
-    - **Prueba controlada**
-    en el asistente en prd ejecutamos el comando en servicios, en ejecutar programa.
+    - **Inventario LZ:** Se debe enviar un correo a infra para agregar la rutina al inventario en PRD.
+
+      Solicito su apoyo ejecutando los siguientes comandos.
+
+          Buenas tardes, solicito su apoyo ejecutando el siguiente comando.
+
+          Usuario: svchad02
+          Ambiente: PRD 
+          Servidor: SBMDEBLZe001
+
+          impala-shell -i $OOZIE_STR_CNX_IMPALA -k -q "<insert-query>" --ssl
+
+    - **Prueba controlada:** En el asistente en prd ejecutamos el comando en servicios, en ejecutar programa.
     comando: xxxxx
       
           $ cd /home/svchad02/scripts/pyEnvs
           $ nohup python3 /home/<user_name>/AW1003001_BigDataCompany/scripts/pyEnvs/runPyEnv.py --resultDir <results_zone> --pyEnvPkg <package_name> --pySitePck <site-package-name> &
-    puede que no finalice ok. asegurarnos de que el correo que llega el orquestador haya finalizado si no, hablar con el usuario. Por posible bug es mejor cerrar la pestaña del asistente cuando se de al boton ejecutar.
+      
+        Puede que no finalice ok. asegurarnos de que el correo que llega el orquestador haya finalizado si no, hablar con el usuario. Por posible bug es mejor cerrar la pestaña del asistente cuando se de al boton ejecutar. Para corroborar que todo se esta ejecutando podemos usar los siguientes comandos.
 
-    logs:
-    cat /avirtual/resultados_riesgos/vrgo-vision-cliente/venv/logs/20220726_155026_orquestador_vision_cliente_maestros_clientes.log
+        - revisar logs:
+          
+              $ cat /avirtual/<zona-resultados>/<paquete>/venv/logs/<log-filename>
 
-    verificar si la rutina se esta ejecutando en PRD
+        - verificar si la rutina se esta ejecutando en PRD
 
-     ps -fea | grep "<zona_resultados>"
+              $ ps -fea | grep "<zona_resultados>"
 
-    si falla y ya estaba calendarizada solicitar featurflags?
+        **Nota:** Si falla y ya estaba calendarizada hay que crear una Oc para cancelar la ejecucion.
 
     
     - **Calendarizar** si la prueba es exitosa insribir en malla. en el excel. 

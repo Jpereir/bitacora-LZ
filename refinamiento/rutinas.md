@@ -18,7 +18,7 @@ debemos asegurarnos si nuestra HU es una revision, una modificacion o una calend
         - Verificar que vaya de master a trunk.
     - **Grupo USD:** verificar grupo USD, hace parte de la documentacion y hace parte del proceso del seguimiento de rutinas, tambien es para saber a que area se pasan las incidencias.
     - **Pipeline validacion** Debemos asegurarnos que el PR ha ejecutado el pipeline de validacion `vitd_validacion_calendarizacion_LZ_CD`
-    - **
+    - **Revisar el MANIFEST**
 - **Comentar HU:** Se debe dejar un comentario en la HU indicando los hallazgos del refinamiento.
 
 
