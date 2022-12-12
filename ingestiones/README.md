@@ -228,7 +228,11 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
 
           $ yarn logs --applicationId <hue_aplicaction_id>
 
-        `<hue_aplicaction_id>` se peude tomar desde HUE yendo a la tarea que fallo. Revisando el output podria realziarse un diagnostico del error que causop que la ingestion no se llevara acabo. Para ver los logs de un flujo que se ejecuto en PRD debe de usarse el asistente Web.
+        `<hue_aplicaction_id>` se peude tomar desde HUE yendo a la tarea que fallo. Revisando el output podria realziarse un diagnostico del error que causop que la ingestion no se llevara acabo. Para ver los logs de un flujo que se ejecuto en PRD debe de usarse el asistente Web. Posiblemente debamos entrar a ver los logs en la tarea map-reduce, para ello buscamos el id del job, cual puede estar en una linea mas o menos como la siguiente 
+            
+          Running job: job_1670355110358_0227
+
+        En este caso cambiamos la palabra `job` por `application` y con el comando de yarn logs podemos visaluar los logs.
      
 
 

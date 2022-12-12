@@ -18,13 +18,14 @@ Se contara con una HU de "Despliegue de infraestructura" la cual es la primera q
           $ git checkout -b feature/HU<hu-id>_<hu-name>
 
     - En caso de que sea un API completamente nueva, copiar el directorio xxx cambiandole el nombre por el de la api que vamos a desplegar
+    - **USAR GENERADOR DE INFRAESTRUCURA.**
     - modicar los archivos de la infrastructura segun sea necesario.
-        - modificar las variables en el azure.yaml 
-            - con el nombr de la api donde requiera
+        - modificar las variables en el azure.yaml
+            - ~~con el nombr de la api donde requiera~~
             - para los primeros despligues dejar la variable condition en false para los stage de despligeue en qa y en prd, esto con el objetivo de no llevar hasta prd despliegue de infraestrucutas que puedan tener errores. Tener en cuenta que debemos probar una ejecucion en todos los estados.
             
         - modificar template:
-            - Paremeters:
+            - ~~Paremeters:~~
                 
                   dynamo<tablename>api:
                     Description: Nombre de tabla de dynamo-xx-xx-api
@@ -42,9 +43,9 @@ Se contara con una HU de "Despliegue de infraestructura" la cual es la primera q
                     Description: Nombre del job para el proyecto <ApiName>
                     Type: String
 
-            - Resources:
-                - modificar nombre de la api en s3KeyEncript
-                - modiifcar aliasname ne s3KeyEncriptAlias
+            - ~~Resources:~~
+                - ~~modificar nombre de la api en s3KeyEncript~~
+                - ~~modiifcar aliasname ne s3KeyEncriptAlias~~
                 - modificar el recurso glueJob<Apiname>:
                     - cambiar los campos que sean necesarios. Tener en cuenta que el campo Name hace referencia a la variable creada en parameters.
                     - Modificar el valor de MaxConcurrentRuns teniendo en cuenta el valor de coordinadores que se ejecutaran a la vez. (validar con el usuario)
@@ -159,7 +160,7 @@ Se contara con una HU de "Despliegue de infraestructura" la cual es la primera q
                     - !Sub ${Dynamo<Tablename>api.Arn}/index/*
                 - Modificar la variable Effect del recurso GlueRolePolicy con el nombre del API.
 
-        - Modificar params
+        - ~~Modificar params~~
         - En params cada vriable de capacidad de escritura y lectura WriteCapacityUnits y ReadCapacityUnits cuenta con un valor que esta parametrizado. Estos valores deben ser creados en VSTS en la seccion de library dentro de releases. Las variables deben ser agregadas en el grupo productizar-variables-informacion-dy-aws. A las capacidaddes de lectura se pone 1,50 y a lectura 1,8000
         
             |name|value|
@@ -240,17 +241,17 @@ Debemos contar con una HU de creacion de coordinadores para mbientes intermedios
 
 
 
-### Desplegar API
-
-- Refactor de codigo:
-    - descargar el zip donde viene el API de django
-        - descomprmir
-        - en el config.json:
-            - quitar las claves
-            - cambiar los nombres de las tablas para que las tome de forma dinamica
-        - modificar el dockerfile
-        - modificar el ~~requirements~~
-        - modificar ~~models.py~~, urls. y settings
+## Desplegar API
+- **Repostorio:** Creamos una nueva rama en el repositorio [NU0044001_ProductizarLaAnalitica_MR](https://grupobancolombia.visualstudio.com/Vicepresidencia%20Servicios%20de%20Tecnolog%C3%ADa/_git/NU0044001_ProductizarLaAnalitica_MR).
+- **Refactor:** Debemos realziar un refactor del codigo que nos entregan del API.
+    - Descargar el zip donde viene el API de django.
+    - descomprmir
+    - en el config.json:
+        - quitar las claves
+        - cambiar los nombres de las tablas para que las tome de forma dinamica
+    - modificar el dockerfile
+    - modificar el ~~requirements~~
+    - modificar ~~models.py~~, urls. y settings
     - si no hay un archivo db.sqlite3:
         - instalar el ambiente virtual
         - ejecutar python3 manage.py migrate

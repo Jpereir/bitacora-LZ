@@ -10,6 +10,10 @@ En los refinamientos de `Historias de Usuario` de rutinas el objetivo es determi
 Apartir de 2022-11-18 solo se recibiran nuevas rutinas bajo el esquema de calendarizacion 2.0 para estos refinamientos debemos hacer lo siquiente:
 
 - **Leer la historia de usuario:** Se debe leer la HU y los distintos comentarios que haya para obtener el contexto de la misma. Debemos verificar qué informacion nos da el usuario respecto al repositorio y pull-request de la rutina que se trabajar, tambien debemos asegurarnos que la HU cuente con un padre.
+- **logs:** 
+ - Cuando se trata de modificaciones grandes o migraciones a nuevo orquestador o nuevo esquema de validacion se necesitan 3 logs. 2 de compilacion y 1 de estabilidad nuevas migraciones.
+ - Para modifiaciones pequeñas son dos logs.
+ - Para rutinas completamente nuevas se requerien 6 logs. 3 de compilacion y 3 de ejecucion.
 - **Verificar el tipo de HU**
 debemos asegurarnos si nuestra HU es una revision, una modificacion o una calendarizacion. Para la calendarizacion debemos asegurarnos que ya se haya trabajado la HU de revision, de lo contrario se etiqueta como `NO se puede trabajar`. Para revisioon o modificacion continuar con lo siquientes pasos.
 - **Identificar datos:**
