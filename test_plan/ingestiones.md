@@ -92,7 +92,7 @@
     - Debemos adjuntar a la docuemtnacion:
         - Correo que no hacemos pruebas.
         - Se adjunta la matriz de riesgo (adjuntar el execel) luego de averla diligenciado. cambiando las fechas (las dos primeras dos dias antes de la salida a PRD y la ultima el dia de la salida), nombre de usuario, dejar en 1 el riesgo ...
-        - las evidencias (logs de prueba controlada). Evidencias_<EVC>_HU_<HU-id>.zip
+        - las evidencias (logs de prueba controlada). `Evidencias_<EVC>_HU_<HU-id>.zip`
         - otros dos archivos
     - lo dejamos en aactive. Cuando este en deploy PDN se debe cerrar
 

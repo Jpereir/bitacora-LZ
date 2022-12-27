@@ -298,12 +298,18 @@ Debemos contar con una HU de creacion de coordinadores para mbientes intermedios
 - pruebas reales:
     - modificar el archivo jmx de manera similar al local, pero manteniendo la parametrizacion.
     - hacer pr
-    - crear nuevo release verificando que el artifack de las pruebas especializadas ya es el correcto.
+    - crear nuevo release verificando que el artifack de las pruebas funcionales ya es el correcto.
     - se necesitan los datos en especificos:
         - para el test plan y para el release:
     - modificar las variables (agregar replicas y max-replicas)
     - modificar las tareas de smoke test y performance test cer y smoke test de prd
-    - hacer testplans? pasarle al certificador los rnf de cada jmeter
+    - Release:
+        - Acceptance Test: Debemos asegurarnos que la persona que realizo las pruebas funcionales modifico las variables, impala, usuario y contra del release. Asegurarnos que el agente este encendido y le damos a deploy nosotros mismos.
+    - hacer testplans? pasarle al certificador los rnf de cada jmeter.
+        - Verificar agente `win-evc00037-dev-m4-1` en las tareas de acceptance
+        - Puede que el stage Acceptance test se quede colgado, si es asi habria que encender de nuevo la instancia en el sigueinte [pipeline](https://grupobancolombia.visualstudio.com/Vicepresidencia%20Servicios%20de%20Tecnolog%C3%ADa/_build?definitionId=10204&_a=summary). Le damo a run new y ponemos los suguientes datos: 
+            - AWS Account: bancolombia-ingenieriati-dev-operacion-aws
+            - Identificador de la instancia EC2: i-017e59e650cc9f809
     - empezar a hacer pruebas para que el estado de pruebas pase.
 
 
@@ -346,7 +352,8 @@ Debemos contar con una HU de creacion de coordinadores para mbientes intermedios
               NECESIDAD: Implementación HU<HU_id> para el despliegue del API <API-name> en ambientes productivos.
               SOLUCION: Desplegar API <API-name> en ambientes productivos
               BENEFICIO: Generar acceso al API <API-name> para que puedan consumir equipos del banco.
-              IMPACTO: Verificado en las pruebas de performance asociadas en el presente release.               
+              IMPACTO: Verificado en las pruebas de performance asociadas en el presente release.
+        - **Security E2E:** Lo aprueba el certificador..              
         - **Create OC:** 
             
             - E2E: En este punto el release ya debe estar excepcionado de las pruebas E2E (punto 1 de la seccion Salida a PRD), si no, el create OC fallara. 

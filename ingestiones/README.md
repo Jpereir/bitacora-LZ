@@ -264,6 +264,7 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
         - 6. Se hicieron pruebas el dia anterior. *Aplica para el release* no aplcia para el uso de tbals temporales
 
     - **Verificar resultados:** En el directorio *`resultado_automatizaciones`* se pueden verificar los resultados de las pruebas a traves de una serie de logs. 
+        - Debemos tener en cuenta que los fallos en METADATA puden estar siendo causado por una falta de CASTEO de los datos. Entrar al log y verificar la informacion para tomar las medidas correctivas.
     
         Si hay errores en **METADATA** y **DATAQUALITY** puede que se deban a que las tablas temporales se crean con datos aleatorios, lo que puede generar incosistencias en los tipos de datos. En este caso la HU debe ser enviada a certifiacion manual. Para ello, debe de igual manera realizarse el punto 8 apartir de este punto y luego comunicarse con alguna de las personas encargadas de certificacion para asignar la HU a dicha persona. Estas personas son asignadas en el planing, consultar a la persona con el rol de Project Owner (PO) por esta informacion.
 
@@ -498,7 +499,9 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
 
         - **Regsitrar:** Hay que lanzar una query para llenar el inventario. Para esto vamos a solicitar la ayuda a alguien de infra, para que ejecute la sigueinte query
         
-              $
+              $ impala-shell -i $OOZIE_STR_CNX_IMPALA -k -q "INSERT INTO resultados.Inventario_LZ (package,table_name,semilla,proceso,en_produccion,origen_fuente,subdomain_hdfs,configfile,passwordfile,tbl_lib,hive_database,hive_table_name,short_name,library,etl_folder,data_folder,schema_table_dev,schema_table_uat,schema_table_prod,workflow,subdomine,methods,campo_delta1,campo_delta2,campo_delta3,tipo_de_consulta_fuente,periodicidad,tipo,particionada,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito,en_nube) VALUES ('<paquete>','<table_name_source>','<semilla>','<proceso>','SI','<Motor_DB>','<subdominio>','<subdominio>.config','<subdominio>.password',<hive_db_tablename>,<hive_db>,<tablename-destino>,<aplicativo>,<esquema-fuente>,<ruta-etl>,<riuta-data-raw>,<schema_table_dev>,<schema_table_uat>,<schema_table_prod>,<workflow>,<subdominio>,<tipo-ingestion>,'N/A','N/A','N/A',<tipo_de_consulta_fuente>,<periodicidad>,<Motor_DB>,'Year',<descripcion>,<solicita_ingestion>,<dia_ejecucion>,<hora_ejecucion>,'<prerrequisito>','NO');" --ssl
+            
+            ejemplo 
 
             Esta solicutd se hace atra ves de un correo
         
