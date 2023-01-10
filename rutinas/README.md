@@ -177,8 +177,8 @@ Consiste en el proceso de crear o modificar alguna libreria o codigo (rutina) de
               $ SELECT package,table_name,semilla,proceso,origen_fuente,data_folder,periodicidad,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito FROM resultados.inventario_lz WHERE origen_fuente='Rutina' LIMIT 10
         
         - **Separar paquete:** Una vez tengamos el nombre del paquete y proceso definidos vamos aregistrar la rutina en el autonventory. la idea es ejecutar la sigueinte consuslta reemplazando los campos requerdos.
-
-              $ INSERT INTO resultados.Inventario_LZ (package,table_name,semilla,proceso,origen_fuente,data_folder,periodicidad,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito,short_name,workflow) VALUES ('<paquete>','<nombre-rutina>','<grupo-USD>','<proceso>','Rutina','<directorio-rutina>','<periodicidad>','<descripcion>','<usuario-hu>','<dia-ejecucion>','<hora-ejecucion>','<prerrequisto>','<aplicativo>','<comando-ejecucion>');
+        
+              $ INSERT INTO resultados.Inventario_LZ (package,table_name,schema_table_prod,semilla,proceso,origen_fuente,hive_database,short_name,data_folder,workflow,subdomine,periodicidad,descripcion,solicita_ingestion,dia_ejecucion,hora_ejecucion,prerrequisito) VALUES ('<paquete>','','','<nombre-rutina>','<proceso>','Rutina','<zona-resultados>','<aplicativo>','<directorio-rutina>','<comando-ejecucion>','<grupo-USD>','<periodicidad>','<descripcion>','<usuario-hu>','<dia-ejecucion>','<hora-ejecucion>','<prerrequisto>');
 
             Ejemplo parametrios:
             |parametro|ejemplo|

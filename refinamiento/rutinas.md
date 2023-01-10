@@ -23,6 +23,7 @@ debemos asegurarnos si nuestra HU es una revision, una modificacion o una calend
     - **Grupo USD:** verificar grupo USD, hace parte de la documentacion y hace parte del proceso del seguimiento de rutinas, tambien es para saber a que area se pasan las incidencias.
     - **Pipeline validacion** Debemos asegurarnos que el PR ha ejecutado el pipeline de validacion `vitd_validacion_calendarizacion_LZ_CD`
     - **Revisar el MANIFEST y setup:** En la nueva forma de calendarizacion la info de los archivos MANIFEST y setup.py van en el archivo stup.cfg
+    - **Prefijo repositorio:** Se debe validar que el prefijo del repo de cada rutina este entre los sigueitnes. bana-, veg-, vcum-, vedp-, vrgo-, vspc-, vitd-, vsas-, vpyp-, vnc-, vsuf-, veyg-, vmdo-, bani-
 - **Comentar HU:** Se debe dejar un comentario en la HU indicando los hallazgos del refinamiento.
 
 
