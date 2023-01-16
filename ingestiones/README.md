@@ -102,6 +102,7 @@ El proceso para generar scripts, la creacion de tablas temporales y otros proces
               "SELECT table_name, DATA_TYPE, COLUMN_NAME, NULLABLE, DATA_PRECISION, DATA_SCALE, DATA_LENGTH FROM  all_tab_columns WHERE table_name='<table_name>' and owner='<esquema>' " 
 
         3.1 se debe de tener en cuenta que en cada motor cambia el query estos son algunos ejemplos según el motor
+
         
             • Sybase
             "sp_columns <nombre_tabla>,<esquema>"
