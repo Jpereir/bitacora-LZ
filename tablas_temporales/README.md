@@ -11,6 +11,10 @@ https://grupobancolombia.visualstudio.com/Vicepresidencia%20Servicios%20de%20Tec
       
           $ cd /home/svchad02/temporalDatabases
           $ sh initDatabases.sh
+    
+    - Contraseña se encuentra en el archivo, cuando sea requerida o se solicite cambiarla   
+   
+          $ pww.txt
 
 2. modificar desarrollo:
     
